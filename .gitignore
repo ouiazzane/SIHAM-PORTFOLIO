@@ -1,0 +1,30 @@
+node_modules
+/dist
+.vite
+npm-debug.log*
+.DS_Store
+
+# Environnements locaux
+.venv/
+venv/
+
+# Variables d'environnement et secrets
+.env
+.env.*
+!.env.example
+
+# Fichiers de compilation TypeScript
+*.tsbuildinfo
+
+# Clés privées et identifiants sensibles
+*.pem
+*.key
+id_rsa
+credentials.json
+
+# Fichiers système
+Thumbs.db
+
+# Fichiers générés de configuration Vite
+/vite.config.js
+/vite.config.d.ts
