@@ -1,5 +1,5 @@
-import { ArrowUpRight, Briefcase, Download, ExternalLink, GraduationCap, Mail, MapPin, Menu, Sparkles, X } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { ArrowUpRight, Briefcase, Download, ExternalLink, GraduationCap, Mail, MapPin, Menu, Moon, Sparkles, Sun, X } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
 
 const personal = {
   name: 'Siham Ouiazzane',
@@ -181,14 +181,20 @@ const softSkills = ['Communication', 'Problem-solving', 'Teamwork', 'Seriousness
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const navItems = useMemo(
     () => ['Home', 'About', 'Skills', 'Projects', 'Experience', 'Education', 'Contact'],
     [],
   );
 
+  useEffect(() => {
+    document.documentElement.style.colorScheme = isDarkMode ? 'dark' : 'light';
+    document.body.style.backgroundColor = isDarkMode ? '#08111f' : '#f8fafc';
+  }, [isDarkMode]);
+
   return (
-    <div className="dark">
+    <div className={isDarkMode ? 'dark' : ''}>
       <div className="min-h-screen bg-slate-50 text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100">
         <header className="sticky top-0 z-50 border-b border-slate-200 bg-slate-50/90 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/85">
           <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
@@ -206,19 +212,39 @@ function App() {
             </div>
 
             <div className="hidden items-center gap-3 lg:flex">
+              <button
+                type="button"
+                onClick={() => setIsDarkMode((current) => !current)}
+                className="rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+                aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
               <a href={personal.cvUrl} download className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 dark:bg-violet-500 dark:hover:bg-violet-400">
                 <Download size={16} /> Download CV
               </a>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen((prev) => !prev)}
-              className="inline-flex rounded-full border border-slate-200 p-2 text-slate-700 lg:hidden dark:border-slate-700 dark:text-slate-200"
-              aria-label="Toggle navigation menu"
-            >
-              {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
+            <div className="flex items-center gap-2 lg:hidden">
+              <button
+                type="button"
+                onClick={() => setIsDarkMode((current) => !current)}
+                className="inline-flex rounded-full border border-slate-200 p-2 text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+                aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsMenuOpen((prev) => !prev)}
+                className="inline-flex rounded-full border border-slate-200 p-2 text-slate-700 lg:hidden dark:border-slate-700 dark:text-slate-200"
+                aria-label="Toggle navigation menu"
+              >
+                {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+              </button>
+            </div>
           </nav>
 
           {isMenuOpen && (
@@ -331,9 +357,9 @@ function App() {
                   I enjoy building maintainable, user-centered applications and learning by working on real projects. My experience has strengthened my ability to collaborate with teams, communicate clearly, and turn ideas into practical solutions that are useful for users.
                 </p>
               </div>
-              <div className="rounded-3xl border border-slate-200 bg-slate-900 p-8 text-slate-100 shadow-sm dark:border-slate-700">
-                <p className="text-sm uppercase tracking-[0.2em] text-violet-300">Current focus</p>
-                <ul className="mt-5 space-y-4 text-base leading-7 text-slate-200">
+              <div className="rounded-3xl border border-violet-200 bg-violet-50 p-8 text-slate-900 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
+                <p className="text-sm uppercase tracking-[0.2em] text-violet-700 dark:text-violet-300">Current focus</p>
+                <ul className="mt-5 space-y-4 text-base leading-7 text-slate-700 dark:text-slate-200">
                   <li>• Full-stack and web development</li>
                   <li>• Modern frontend engineering and UI/UX thinking</li>
                   <li>• Practical software solutions and maintainable code</li>
@@ -343,19 +369,19 @@ function App() {
             </div>
           </section>
 
-          <section id="skills" className="bg-slate-900 py-20 text-slate-100">
+          <section id="skills" className="bg-slate-100 py-20 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
               <div className="mb-12 max-w-2xl">
-                <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-violet-300">Skills</p>
+                <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-violet-700 dark:text-violet-300">Skills</p>
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Technologies and strengths built through study and practice.</h2>
               </div>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
                 {skillsByCategory.map((category) => (
-                  <div key={category.title} className="min-w-0 rounded-3xl border border-slate-700 bg-slate-800/80 p-6">
-                    <h3 className="mb-4 break-words text-lg font-semibold text-white">{category.title}</h3>
+                  <div key={category.title} className="min-w-0 rounded-3xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800/80">
+                    <h3 className="mb-4 break-words text-lg font-semibold text-slate-900 dark:text-white">{category.title}</h3>
                     <div className="flex flex-wrap gap-2">
                       {category.items.map((item) => (
-                        <span key={item} className="max-w-full break-words rounded-full border border-slate-600 bg-slate-700 px-3 py-1.5 text-sm text-slate-200">
+                        <span key={item} className="max-w-full break-words rounded-full border border-slate-300 bg-slate-100 px-3 py-1.5 text-sm text-slate-700 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200">
                           {item}
                         </span>
                       ))}
@@ -455,22 +481,22 @@ function App() {
             </div>
           </section>
 
-          <section id="languages" className="bg-slate-900 py-20 text-slate-100">
+          <section id="languages" className="bg-slate-100 py-20 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
               <div className="grid gap-8 md:grid-cols-2">
                 <div>
-                  <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-violet-300">Languages</p>
+                  <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-violet-700 dark:text-violet-300">Languages</p>
                   <div className="flex flex-wrap gap-3">
                     {languages.map((lang) => (
-                      <span key={lang} className="rounded-full border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200">{lang}</span>
+                      <span key={lang} className="rounded-full border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">{lang}</span>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-violet-300">Soft skills</p>
+                  <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-violet-700 dark:text-violet-300">Soft skills</p>
                   <div className="flex flex-wrap gap-3">
                     {softSkills.map((skill) => (
-                      <span key={skill} className="rounded-full border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200">{skill}</span>
+                      <span key={skill} className="rounded-full border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">{skill}</span>
                     ))}
                   </div>
                 </div>
@@ -479,25 +505,25 @@ function App() {
           </section>
 
           <section id="contact" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
-            <div className="rounded-[2rem] border border-slate-200 bg-slate-900 p-8 text-slate-100 shadow-soft dark:border-slate-700 md:p-12">
-              <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-violet-300">Contact</p>
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-slate-900 shadow-soft dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 md:p-12">
+              <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-violet-700 dark:text-violet-300">Contact</p>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Interested in a PFE internship or collaboration?</h2>
-              <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
+              <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
                 I am actively open to software engineering, web development, and full-stack opportunities where I can contribute, learn, and grow.
               </p>
 
               <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                <a href={`mailto:${personal.email}`} className="rounded-2xl border border-slate-700 bg-slate-800 p-4 transition hover:border-violet-400 hover:bg-slate-700">
-                  <p className="text-sm text-slate-400">Email</p>
-                  <p className="mt-2 font-medium text-white">{personal.email}</p>
+                <a href={`mailto:${personal.email}`} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-violet-400 hover:bg-violet-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Email</p>
+                  <p className="mt-2 font-medium text-slate-900 dark:text-white">{personal.email}</p>
                 </a>
-                <a href={personal.github} target="_blank" rel="noreferrer" className="rounded-2xl border border-slate-700 bg-slate-800 p-4 transition hover:border-violet-400 hover:bg-slate-700">
-                  <p className="text-sm text-slate-400">GitHub</p>
-                  <p className="mt-2 font-medium text-white">ouiazzane</p>
+                <a href={personal.github} target="_blank" rel="noreferrer" className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-violet-400 hover:bg-violet-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">GitHub</p>
+                  <p className="mt-2 font-medium text-slate-900 dark:text-white">ouiazzane</p>
                 </a>
-                <a href={personal.linkedin} target="_blank" rel="noreferrer" className="rounded-2xl border border-slate-700 bg-slate-800 p-4 transition hover:border-violet-400 hover:bg-slate-700">
-                  <p className="text-sm text-slate-400">LinkedIn</p>
-                  <p className="mt-2 font-medium text-white">Siham Ouiazzane</p>
+                <a href={personal.linkedin} target="_blank" rel="noreferrer" className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-violet-400 hover:bg-violet-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">LinkedIn</p>
+                  <p className="mt-2 font-medium text-slate-900 dark:text-white">Siham Ouiazzane</p>
                 </a>
               </div>
 
@@ -510,7 +536,7 @@ function App() {
                 >
                   <Mail size={18} /> Contact me
                 </a>
-                <a href={personal.cvUrl} download className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-600 bg-slate-800 px-5 py-3 font-medium text-white transition hover:bg-slate-700">
+                <a href={personal.cvUrl} download className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-3 font-medium text-slate-800 transition hover:bg-slate-200 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700">
                   <Download size={18} /> Download CV
                 </a>
               </div>
