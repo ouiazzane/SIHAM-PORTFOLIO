@@ -1,19 +1,24 @@
-import { ArrowUpRight, Briefcase, Download, ExternalLink, GraduationCap, Mail, MapPin, Menu, Moon, Sparkles, Sun, X } from 'lucide-react';
+import { ArrowUpRight, Briefcase, Download, ExternalLink, GraduationCap, Mail, MapPin, Menu, Moon, Phone, Sparkles, Sun, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 const personal = {
   name: 'Siham Ouiazzane',
-  title: 'Final-Year Software Engineering Student | Software Developer',
+  title: 'Final-Year Software Engineering & AI Student | Full-Stack Developer',
   objective:
-    'Actively seeking a Projet de Fin d’Études (PFE) internship in Software Engineering, Web Development, Full-Stack Development, or a related software development position.',
+    'Seeking a Projet de Fin d’Études (PFE) internship in software engineering and artificial intelligence, combining full-stack development with machine learning and deep learning.',
   email: 'ouiazzanesiham04@gmail.com',
-  location: 'Morocco',
+  phone: '0696700559',
+  location: 'Errachidia, Morocco',
   github: 'https://github.com/ouiazzane/',
   linkedin: 'https://www.linkedin.com/in/siham-ouiazzane-4409a3263?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   cvUrl: '/CV_Siham_Ouiazzane.pdf',
 };
 
 const skillsByCategory = [
+  {
+    title: 'Artificial Intelligence & Data',
+    items: ['Machine Learning', 'Deep Learning', 'LLMs', 'RAG', 'Computer Vision', 'GNNs', 'Data Analysis', 'PyTorch', 'TensorFlow', 'PyTorch Geometric', 'MONAI', 'Scikit-learn', 'NumPy', 'Pandas', 'Matplotlib'],
+  },
   {
     title: 'Frontend Development',
     items: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'React', 'Angular'],
@@ -32,28 +37,65 @@ const skillsByCategory = [
   },
   {
     title: 'Databases & Query Languages',
-    items: ['Oracle', 'MySQL', 'SQLite', 'MongoDB', 'SQL'],
+    items: ['MySQL', 'SQLite', 'MongoDB', 'SQL'],
   },
   {
     title: 'Software Engineering & Modeling',
-    items: ['UML', '2TUP', 'Scrum'],
+    items: ['UML', 'OCL', '2TUP', 'Scrum'],
   },
   {
     title: 'Other Technologies & Domains',
-    items: ['XML', 'Internet of Things (IoT)'],
+    items: ['Docker', 'CI/CD', 'Cloud Computing', 'XML', 'Internet of Things (IoT)'],
   },
   {
     title: 'Tools & Version Control',
-    items: ['Git', 'GitHub'],
+    items: ['Git', 'GitHub', 'Figma'],
   },
   {
     title: 'UI / UX',
-    items: ['UI/UX Design'],
+    items: ['UI/UX Design', 'Figma'],
   },
 ];
 
 const projects = [
   {
+    category: 'AI',
+    name: 'Credit Scoring Model',
+    description: 'Educational credit-risk application that estimates a client’s probability of serious delinquency within two years using the Give Me Some Credit dataset and a trained Random Forest model.',
+    stack: ['Python', 'Scikit-learn', 'FastAPI', 'React', 'Vite', 'Streamlit'],
+    features: ['Data cleaning and feature engineering pipeline', 'FastAPI prediction service with React dashboard and Streamlit alternative', 'Class-imbalance handling and validation-based threshold selection'],
+    repo: 'https://github.com/ouiazzane/credit-scoring-model',
+    demo: '',
+  },
+  {
+    category: 'AI',
+    name: 'Beyond Glioma Segmentation',
+    description: 'Brain-tumor segmentation on multimodal MRI scans with uncertainty estimation to flag out-of-distribution cases and support three-level confidence triage.',
+    stack: ['Python', 'PyTorch', 'MONAI', '3D U-Net', 'NiBabel', 'SimpleITK', 'BraTS-Africa'],
+    features: ['Segmentation across T1, T1CE, T2, and FLAIR modalities', 'Uncertainty estimation with softmax entropy, test-time augmentation, and Monte Carlo dropout', 'Out-of-distribution detection with confidence-based triage'],
+    repo: '',
+    demo: '',
+  },
+  {
+    category: 'AI',
+    name: 'Network Intrusion Detection with GNNs',
+    description: 'Academic project classifying network traffic as normal or malicious on KDD Cup 99 using graph neural networks.',
+    stack: ['Python', 'PyTorch', 'PyTorch Geometric', 'Scikit-learn', 'GAT', 'GraphSAGE'],
+    features: ['Traffic preprocessing and graph construction', 'Classification with GAT and GraphSAGE', 'Evaluation using accuracy, confusion matrix, and ROC-AUC'],
+    repo: '',
+    demo: '',
+  },
+  {
+    category: 'AI',
+    name: 'Autonomous Cleaning Robot',
+    description: 'Interactive 2D robot-cleaner simulator that plans an optimal route around obstacles using the A* search algorithm.',
+    stack: ['Python', 'Pygame', 'A*', 'heapq'],
+    features: ['Manhattan-distance heuristic and priority queue', 'Interactive obstacle placement', 'Path visualization and animation'],
+    repo: '',
+    demo: '',
+  },
+  {
+    category: 'Development',
     name: 'JuriLink',
     description: 'Mobile application for managing a lawyer’s office, designed to support case tracking and document organization.',
     stack: ['React Native', 'TypeScript', 'Node.js', 'Express'],
@@ -62,6 +104,7 @@ const projects = [
     demo: '',
   },
   {
+    category: 'Development',
     name: 'TaskMe',
     description: 'Task management platform for organizing work, tracking progress, and supporting productivity in a structured workflow.',
     stack: ['React', 'Vite', 'Express', 'MongoDB', 'JWT'],
@@ -70,6 +113,7 @@ const projects = [
     demo: '',
   },
   {
+    category: 'Development',
     name: 'TaskFlow',
     description: 'Collaborative project management platform for organizing projects and tasks, managing team members, and tracking progress.',
     stack: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'Express', 'MongoDB', 'JWT', 'Zod'],
@@ -78,6 +122,7 @@ const projects = [
     demo: '',
   },
   {
+    category: 'Development',
     name: 'Boutique E-Commerce',
     description: 'Full-stack online store with a product catalogue, shopping cart, order management, and delivery support in Morocco.',
     stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Express', 'MongoDB', 'JWT', 'Zod'],
@@ -86,6 +131,7 @@ const projects = [
     demo: '',
   },
   {
+    category: 'Development',
     name: 'SHIFA',
     description: 'Healthcare-oriented web application centered on pediatric care support and streamlined service access.',
     stack: ['React', 'Vite', 'Node.js', 'Express', 'MongoDB'],
@@ -94,6 +140,7 @@ const projects = [
     demo: '',
   },
   {
+    category: 'Development',
     name: 'Django Chat',
     description: 'Educational communication platform where students and teachers can discover users, exchange private messages, and share learning resources.',
     stack: ['Python', 'Django', 'Django REST Framework', 'SQLite', 'HTML', 'CSS', 'JavaScript'],
@@ -102,6 +149,7 @@ const projects = [
     demo: '',
   },
   {
+    category: 'Development',
     name: 'IMANOS E-Learning',
     description: 'E-learning platform prototype for students and teachers to access and manage online learning content.',
     stack: ['PHP', 'SQLite', 'PDO', 'HTML', 'CSS', 'JavaScript'],
@@ -110,6 +158,7 @@ const projects = [
     demo: '',
   },
   {
+    category: 'Development',
     name: 'Blockchain dApp',
     description: 'Blockchain learning project implementing smart contract-based exercises and a DApp interface for Solidity-focused coursework.',
     stack: ['React', 'JavaScript', 'Solidity', 'Truffle'],
@@ -121,47 +170,41 @@ const projects = [
 
 const experience = [
   {
-    title: 'Supervisor / Mentor',
-    company: 'Boarding school in Tabant Aït Bouguemez',
-    period: '1 year',
-    description: 'Supervised students and supported daily coordination within the boarding environment.',
-  },
-  {
-    title: 'Internship',
-    company: 'GM-SOFT, Béni Mellal',
-    period: '1 month',
-    description: 'Worked in a software environment and gained practical exposure to development workflows.',
-  },
-  {
-    title: 'Internship',
-    company: 'TRAINING EDG CONSULTING, Béni Mellal',
-    period: '1 month',
-    description: 'Collaborated on software and technical tasks in a consulting-focused environment.',
-  },
-  {
-    title: 'Internship',
-    company: 'ENGINEERING VALLEY, Agadir',
-    period: '2 months',
-    description: 'Supported technical work and software-related learning in a professional setting.',
-  },
-  {
-    title: 'Internship',
+    title: 'Software Developer Intern',
     company: 'LOGICALHO, Casablanca',
-    period: '1 month',
-    description: 'Participated in a development internship with exposure to real project work.',
+    period: 'July–August 2026',
+    description: 'Developed JuriLink, a mobile application for law-firm case tracking and document organization using React Native, TypeScript, Node.js, and Express.',
   },
   {
-    title: 'Internship',
+    title: 'Frontend Development Intern — GestCom',
+    company: 'GM Soft, Béni Mellal',
+    period: 'July–August 2025',
+    description: 'Built web interfaces with Angular, TypeScript, HTML, SCSS, and PrimeNG; integrated REST APIs and used GitHub branches and pull requests alongside Trello.',
+  },
+  {
+    title: 'Software Developer Intern',
+    company: 'Engineering Valley, Agadir',
+    period: 'April–June 2024',
+    description: 'Developed Django Chat, an educational messaging platform using Python, Django, Django REST Framework, and SQLite.',
+  },
+  {
+    title: 'Web Developer & UI/UX Design Intern',
     company: 'LOGICALHO, Casablanca',
-    period: '2 months',
-    description: 'Completed a second internship with the same company, reflecting a continued development experience.',
+    period: 'July–August 2023',
+    description: 'Created a website for a cosmetics shop and designed an e-commerce user experience in Figma.',
+  },
+  {
+    title: 'Supervisor',
+    company: 'Tabant Aït Bouguemaz Boarding School',
+    period: 'September 2021–July 2022',
+    description: 'Provided daily supervision and support to students.',
   },
 ];
 
 const education = [
   {
     title: 'Baccalauréat in Physical Sciences BIOF',
-    institution: 'General secondary education',
+    institution: 'Lycée Qualifiant Aït Bouguemaz',
     period: '2021–2022',
   },
   {
@@ -176,8 +219,18 @@ const education = [
   },
 ];
 
-const languages = ['Tamazight', 'Arabic', 'French', 'English', 'German'];
-const softSkills = ['Communication', 'Problem-solving', 'Teamwork', 'Seriousness and professionalism'];
+const languages = [
+  'Tamazight — Native',
+  'Arabic — Fluent',
+  'French — Fluent',
+  'English — Upper-intermediate',
+  'German — Intermediate',
+];
+const softSkills = ['Communication', 'Teamwork', 'Project management', 'Problem-solving', 'Rigor and diligence'];
+const projectGroups = [
+  { category: 'AI', title: 'Artificial Intelligence Projects' },
+  { category: 'Development', title: 'Software Development Projects' },
+];
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -276,12 +329,12 @@ function App() {
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-sm font-medium text-violet-700 dark:border-violet-500/40 dark:bg-violet-500/10 dark:text-violet-200">
                   <Sparkles size={14} /> Available for PFE
                 </div>
-                <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Software engineering student</p>
+                <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Software engineering & AI student</p>
                 <h1 className="max-w-xl text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
                   Building thoughtful digital experiences through clean, maintainable software.
                 </h1>
                 <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-                  I am a final-year Software Engineering student at FST Errachidia, passionate about software development, modern web technologies, and turning ideas into practical digital solutions. I am currently looking for a PFE internship where I can contribute to real-world projects and continue growing as a developer.
+                  I am a final-year Software Engineering and Artificial Intelligence student at FST Errachidia, with experience across web and mobile development, machine learning, and deep learning. I am looking for a PFE internship in software engineering and AI.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -322,7 +375,7 @@ function App() {
 
                   <div className="space-y-4 text-sm text-slate-600 dark:text-slate-300">
                     <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
-                      <Briefcase size={18} className="text-violet-600" />
+                      <Phone size={18} className="text-violet-600" />
                       <span>{personal.title}</span>
                     </div>
                     <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
@@ -336,6 +389,10 @@ function App() {
                     <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
                       <Mail size={18} className="text-violet-600" />
                       <a href={`mailto:${personal.email}`} className="transition hover:text-slate-900 dark:hover:text-white">{personal.email}</a>
+                    </div>
+                    <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
+                      <Briefcase size={18} className="text-violet-600" />
+                      <a href={`tel:${personal.phone}`} className="transition hover:text-slate-900 dark:hover:text-white">{personal.phone}</a>
                     </div>
                   </div>
                 </div>
@@ -351,19 +408,19 @@ function App() {
             <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <p className="text-lg leading-8 text-slate-600 dark:text-slate-300">
-                  I am Siham Ouiazzane, a final-year software engineering student currently pursuing the Software Engineering and Artificial Intelligence program at FST Errachidia. Through my studies and internships, I have developed a strong foundation in software development, web technologies, and problem-solving.
+                  I am Siham Ouiazzane, a final-year engineering student in Software Engineering and Artificial Intelligence at FST Errachidia, with a DUT in Computer Engineering from ESTG. My four software-development internships and academic projects have given me experience in web and mobile development as well as AI, including medical-image segmentation and graph neural networks.
                 </p>
                 <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">
-                  I enjoy building maintainable, user-centered applications and learning by working on real projects. My experience has strengthened my ability to collaborate with teams, communicate clearly, and turn ideas into practical solutions that are useful for users.
+                  I enjoy building maintainable, user-centered applications and applying machine learning and deep learning to practical problems. I am seeking a PFE internship where I can contribute to software engineering and artificial-intelligence projects.
                 </p>
               </div>
               <div className="rounded-3xl border border-violet-200 bg-violet-50 p-8 text-slate-900 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
                 <p className="text-sm uppercase tracking-[0.2em] text-violet-700 dark:text-violet-300">Current focus</p>
                 <ul className="mt-5 space-y-4 text-base leading-7 text-slate-700 dark:text-slate-200">
-                  <li>• Full-stack and web development</li>
-                  <li>• Modern frontend engineering and UI/UX thinking</li>
-                  <li>• Practical software solutions and maintainable code</li>
-                  <li>• Seeking a PFE internship in software engineering</li>
+                  <li>• Full-stack and mobile development</li>
+                  <li>• Machine learning, deep learning, and computer vision</li>
+                  <li>• Medical-image segmentation and graph neural networks</li>
+                  <li>• Seeking a PFE internship in software engineering and AI</li>
                 </ul>
               </div>
             </div>
@@ -400,43 +457,56 @@ function App() {
               </div>
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-2">
-              {projects.map((project) => (
-                <article key={project.name} className="group flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-soft dark:border-slate-800 dark:bg-slate-900">
-                  <div className="mb-5 flex items-center justify-between gap-3">
-                    <h3 className="text-2xl font-semibold">{project.name}</h3>
-                    {project.repo && (
-                      <a href={project.repo} target="_blank" rel="noreferrer" aria-label={`View ${project.name} repository`} className="inline-flex items-center justify-center rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">
-                        <ExternalLink size={16} />
-                      </a>
-                    )}
-                  </div>
-                  <p className="text-base leading-7 text-slate-600 dark:text-slate-300">{project.description}</p>
+            <div className="space-y-12">
+              {projectGroups.map((group) => (
+                <section key={group.category} aria-labelledby={`projects-${group.category.toLowerCase()}`}>
+                  <h3 id={`projects-${group.category.toLowerCase()}`} className="mb-6 text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
+                    {group.title}
+                  </h3>
+                  <div className="grid gap-6 lg:grid-cols-2">
+                    {projects.filter((project) => project.category === group.category).map((project) => (
+                      <article key={project.name} className="group flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-soft dark:border-slate-800 dark:bg-slate-900">
+                        <div className="mb-5 flex items-center justify-between gap-3">
+                          <h4 className="text-2xl font-semibold">{project.name}</h4>
+                          {project.repo && (
+                            <a href={project.repo} target="_blank" rel="noreferrer" aria-label={`View ${project.name} repository`} className="inline-flex items-center justify-center rounded-full border border-slate-200 p-2 text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">
+                              <ExternalLink size={16} />
+                            </a>
+                          )}
+                        </div>
+                        <p className="text-base leading-7 text-slate-600 dark:text-slate-300">{project.description}</p>
 
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {project.stack.map((tag) => (
-                      <span key={tag} className="rounded-full bg-violet-50 px-2.5 py-1 text-xs font-medium text-violet-700 dark:bg-violet-500/10 dark:text-violet-200">{tag}</span>
+                        <div className="mt-5 flex flex-wrap gap-2">
+                          {project.stack.map((tag) => (
+                            <span key={tag} className="rounded-full bg-violet-50 px-2.5 py-1 text-xs font-medium text-violet-700 dark:bg-violet-500/10 dark:text-violet-200">{tag}</span>
+                          ))}
+                        </div>
+
+                        <ul className="mt-5 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                          {project.features.map((feature) => (
+                            <li key={feature} className="flex items-start gap-2">
+                              <span className="mt-1.5 h-2 w-2 rounded-full bg-violet-500" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        {(project.repo || project.demo) && (
+                          <div className="mt-6 flex items-center justify-between border-t border-slate-200 pt-5 dark:border-slate-700">
+                            {project.repo ? (
+                              <a href={project.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-slate-700 transition hover:text-slate-900 dark:text-slate-200 dark:hover:text-white">
+                                View repository <ArrowUpRight size={16} />
+                              </a>
+                            ) : <span />}
+                            {project.demo ? (
+                              <a href={project.demo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-violet-600">Live demo</a>
+                            ) : null}
+                          </div>
+                        )}
+                      </article>
                     ))}
                   </div>
-
-                  <ul className="mt-5 space-y-2 text-sm text-slate-600 dark:text-slate-300">
-                    {project.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2">
-                        <span className="mt-1.5 h-2 w-2 rounded-full bg-violet-500" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-6 flex items-center justify-between border-t border-slate-200 pt-5 dark:border-slate-700">
-                    <a href={project.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-slate-700 transition hover:text-slate-900 dark:text-slate-200 dark:hover:text-white">
-                      View repository <ArrowUpRight size={16} />
-                    </a>
-                    {project.demo ? (
-                      <a href={project.demo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-violet-600">Live demo</a>
-                    ) : null}
-                  </div>
-                </article>
+                </section>
               ))}
             </div>
           </section>
@@ -507,15 +577,19 @@ function App() {
           <section id="contact" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
             <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-slate-900 shadow-soft dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 md:p-12">
               <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-violet-700 dark:text-violet-300">Contact</p>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Interested in a PFE internship or collaboration?</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Interested in a PFE internship in software engineering or AI?</h2>
               <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-                I am actively open to software engineering, web development, and full-stack opportunities where I can contribute, learn, and grow.
+                I am actively seeking a PFE internship in software engineering and artificial intelligence, where I can contribute across full-stack development and AI.
               </p>
 
-              <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                 <a href={`mailto:${personal.email}`} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-violet-400 hover:bg-violet-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700">
                   <p className="text-sm text-slate-500 dark:text-slate-400">Email</p>
                   <p className="mt-2 font-medium text-slate-900 dark:text-white">{personal.email}</p>
+                </a>
+                <a href={`tel:${personal.phone}`} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-violet-400 hover:bg-violet-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Phone</p>
+                  <p className="mt-2 font-medium text-slate-900 dark:text-white">{personal.phone}</p>
                 </a>
                 <a href={personal.github} target="_blank" rel="noreferrer" className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-violet-400 hover:bg-violet-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700">
                   <p className="text-sm text-slate-500 dark:text-slate-400">GitHub</p>
