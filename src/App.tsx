@@ -60,6 +60,15 @@ const skillsByCategory = [
 const projects = [
   {
     category: 'AI',
+    name: 'CharVision AI — Handwritten Character Recognition',
+    description: 'Interactive handwritten-character recognition application powered by a convolutional neural network, with a FastAPI inference backend and React drawing interface.',
+    stack: ['Python', 'PyTorch', 'CNN', 'FastAPI', 'React', 'MNIST', 'EMNIST'],
+    features: ['Draw characters and view the top three predictions with probabilities', 'Recognizes 10 MNIST digits and 47 EMNIST Balanced classes', 'Test accuracy: 99.62% on MNIST and 90.21% on EMNIST Balanced'],
+    repo: 'https://github.com/ouiazzane/HandwrittenCharacterRecognition',
+    demo: '',
+  },
+  {
+    category: 'AI',
     name: 'Credit Scoring Model',
     description: 'Educational credit-risk application that estimates a client’s probability of serious delinquency within two years using the Give Me Some Credit dataset and a trained Random Forest model.',
     stack: ['Python', 'Scikit-learn', 'FastAPI', 'React', 'Vite', 'Streamlit'],
